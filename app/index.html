@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" ng-app="phonecatApp" ng-controller="PhoneListCtrl">
+<head>
+  <meta charset="utf-8">
+  <title ng-bind-template="Gallery: {{phoneQuery}}">Gallery</title>
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="js/controllers.js"></script>
+</head>
+
+<body>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+
+      Search for a phone:
+      <input ng-model="phoneQuery">
+     
+      Sort phones by: 
+        <select ng-model="phonesOrder">
+          <option value="name">Alphabetical</option>
+          <option value="age">Newest</option>
+          <option value="-age">Oldest</option>
+          </select>
+
+        <hr>
+        <p>Total number of phones: <b><font color="red">{{phones.length}}</font></b></p>
+        <p>The list is sorted by <b><font color="red">{{phonesOrder}}</font></b></p>
+      </div>
+      
+      <div class="span10">
+        <ul class="phones">
+          <li ng-repeat="phone in phones | filter: phoneQuery | orderBy: phonesOrder" class="thumbnail">
+            <a href="#/phones/{{phone.id}}" class="thumb"><img ng-src="{{phone.imageUrl}}"></a>
+            <a href="#/phones/{{phone.id}}"><font style="font-weight:bold;">{{phone.name}}</font></a>
+            <p>{{phone.snippet}}</p>
+          </li>
+        </ul>
+       </div>
+    </div>
+  </div>
+
+</body>
+</html>
