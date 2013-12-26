@@ -2,19 +2,28 @@
 
 /* Controllers */
 
-var phonecatApp = angular.module('phonecatApp', []);
+var phonecatControllers = angular.module('phonecatControllers', []);
 
-phonecatApp.controller('PhoneListCtrl',['$scope', '$http', function($scope, $http) {
+phonecatControllers.controller('PhoneListCtrl', ['$scope', '$http',
+	function ($scope, $http){
+		$http.get('phones/phones.json').success(function (data){
+			$scope.phones = data;
+		});
 
-$http.get('phones/phones.json').success(function(data){ $scope.phones = data;});
+		$scope.phonesOrder = 'age';
+	}]);
 
+phonecatControllers.controller('PhoneDetailCtrl', ['$scope', '$routeParams',
+	function ($scope, $routeParams){
+		$scope.phoneId = $routeParams.phoneId;
+	}]);
+
+
+/*
 $scope.hello = "Hello, this is a message from the controller"
 
 $scope.people = [{'fname': 'Tomer', 'lname': 'Amar', 'age': '22'},
 				 {'fname': 'Guy', 'lname':'Kroitoru', 'age':'23'},
 				 { 'fname': 'Nir', 'lname':"Halperin", 'age':'25'},
 				 { 'fname':'Yehuda', 'lname':'Broderick', 'age':'24'}];
-
-$scope.phonesOrder = 'age'
-
-}]);
+*/

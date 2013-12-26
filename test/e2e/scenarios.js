@@ -4,10 +4,15 @@
 
 describe('PhoneCat App', function() {
 
+  it ('should redirect index.html to: index.html#/phones', function(){
+    browser().navigateTo('app/Index.html');
+    expect(browser().location().url()).toBe('/phones');
+  })
+
   describe('Phone list view', function() {
 
     beforeEach(function() {
-      browser().navigateTo('app/index.html');
+      browser().navigateTo('app/index.html#/phones');
     });
 
 
@@ -19,6 +24,9 @@ describe('PhoneCat App', function() {
 
       input('phoneQuery').enter('motorola');
       expect(repeater('.phones li').count()).toBe(8);
+
+      input ('phoneQuery').enter('nokia');
+      expect(repeater('.phones li').count()).toBe(0);
     });
 
 
@@ -41,6 +49,16 @@ describe('PhoneCat App', function() {
       input('phoneQuery').enter('nexus');
       element('.phones li a').click();
       expect(browser().location().url()).toBe('/phones/nexus-s');
+    });
+  });
+
+    describe('phone detail view', function(){
+      beforeEach(function(){
+        browser().navigateTo('app/index.html#/phones/dell-venue');
+      });
+
+    it('should display placeholder page with phoneId', function() {
+      expect(binding('phoneId')).toBe('dell-venue');
     });
   });
 });
