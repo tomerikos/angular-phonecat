@@ -17,7 +17,6 @@ describe('PhoneCat controllers', function() {
       ctrl = $controller('PhoneListCtrl', {$scope: scope});
     }));
 
-
     it('should create "phones" model with 2 phones fetched from xhr', function() {
       expect(scope.phones).toBeUndefined();
       $httpBackend.flush();
@@ -26,10 +25,10 @@ describe('PhoneCat controllers', function() {
                                    {name: 'Motorola DROID'}]);
     });
 
-
-    it('should set the default value of orderProp model', function() {
-      expect(scope.orderProp).toBe('age');
+      it('should set the default value of phonesOrder model', function() {
+      expect(scope.phonesOrder).toBe('age');
     });
+
   });
 
 

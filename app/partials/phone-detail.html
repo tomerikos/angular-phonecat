@@ -16,6 +16,10 @@
 		<dl>
 			<dt>Availability</dt>
 			<dd ng-repeat="availability in phone.availability">{{availability}}</dd>
+			<dt>Infrared</dt>
+			<dd>{{phone.connectivity.infrared | checkmark}}</dd>
+			<dt>GPS</dt>
+			<dd>{{phone.connectivity.gps | checkmark}}</dd>
 		</dl>
 	</li> 
 | 
