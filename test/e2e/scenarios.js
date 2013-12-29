@@ -57,8 +57,13 @@ describe('PhoneCat App', function() {
         browser().navigateTo('app/index.html#/phones/dell-venue');
       });
 
-    it('should display placeholder page with phoneId', function() {
-      expect(binding('phoneId')).toBe('dell-venue');
+    it('should display dell-venue page', function() {
+      expect(binding('phone.name')).toBe('Dell Venue');
     });
+
+    it('should count 6 images on dell-venue page', function(){
+      expect(repeater('.phone-thumbs li').count()).toBe(6);
+    });
+
   });
 });
