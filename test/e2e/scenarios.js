@@ -52,6 +52,9 @@ describe('PhoneCat App', function() {
     });
   });
 
+
+/* phone detail view */
+
     describe('phone detail view', function(){
       beforeEach(function(){
         browser().navigateTo('app/index.html#/phones/dell-venue');
@@ -63,6 +66,18 @@ describe('PhoneCat App', function() {
 
     it('should count 6 images on dell-venue page', function(){
       expect(repeater('.phone-thumbs li').count()).toBe(6);
+    });
+
+    it('should view the 1st image of the phone as the main image', function(){
+      expect(element('img.phone').attr('src')).toBe('img/phones/dell-venue.0.jpg');
+    })
+
+      it('should swap the main img if another img is being clicked', function() {
+      element('.phone-thumbs li:nth-child(3) img').click();
+      expect(element('img.phone').attr('src')).toBe('img/phones/dell-venue.2.jpg');
+ 
+      element('.phone-thumbs li:nth-child(1) img').click();
+      expect(element('img.phone').attr('src')).toBe('img/phones/dell-venue.0.jpg');
     });
 
   });
